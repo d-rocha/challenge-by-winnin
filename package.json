@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.2",
@@ -28,5 +29,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Challenge Front-End by Winnin",
+  "main": "index.js",
+  "repository": "https://github.com/d-rocha/challenge-by-winnin.git",
+  "author": "Davi Rocha <dr.oliveira88@gmail.com> (https://davirocha.com.br/)",
+  "license": "MIT"
 }

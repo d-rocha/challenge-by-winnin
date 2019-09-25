@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header'
+import Button from '../Button'
 import logo from '../../logo.svg';
 import '../../styles/App.css';
 
@@ -7,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <Header/>
+      <Button/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
