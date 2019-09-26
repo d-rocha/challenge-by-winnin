@@ -1,5 +1,11 @@
-import React, {Component} from 'react'
+import React, {
+  Component
+} from 'react'
 import PropTypes from 'prop-types'
+
+import {
+  ButtonStyled
+} from './style'
 
 export default class Button extends Component {
   static defaultProps = {
@@ -13,9 +19,9 @@ export default class Button extends Component {
 
   render() {
     return (
-      <button onClick={this.props.onClick}>
+      <ButtonStyled onClick={this.props.onClick}>
         {this.props.children}
-      </button>
+      </ButtonStyled>
     );
   }
 }

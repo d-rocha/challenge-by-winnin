@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 
-export const HeaderStyled = styled.div`
+export const HeaderStyled = styled.div `
   padding: 20px 0 20px 0;
   background-color: #333333;
-  /* position: fixed;
-  width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   header {
     color: #fff;
