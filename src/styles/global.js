@@ -11,8 +11,12 @@ const GlobalStyle = createGlobalStyle `
   }
   body {
     font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-somoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale;
   }
 `;
 
