@@ -2,6 +2,7 @@ import {
   createGlobalStyle
 } from 'styled-components';
 
+/* Definindo estilos globais para o app */
 const GlobalStyle = createGlobalStyle `
   * {
     margin: 0;
