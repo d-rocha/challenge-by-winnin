@@ -13,4 +13,7 @@ export const ButtonStyled = styled.button `
   :active {
     background-color: #ff5500;
   }
+  &:hover {
+    background-color: #ff5500;
+  }
 `;

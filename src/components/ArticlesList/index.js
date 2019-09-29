@@ -1,71 +1,123 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import credentialReddit from '../../service/data';
 import Button from '../Button';
 
-import { ContainerButtons, ContainerList } from './style';
+//Importando os estilos do componente
+import { ContainerBox, ContainerButtons, ContainerList } from './style';
 
-const r = credentialReddit
+const thumbnailImg = require('../../assets/thumbnail.png');
+
+//Definindo o Proxy para as chamadas do subreddit reactjs
+const apiData = credentialReddit.getSubreddit('reactjs')
 
 export default class ArticleList extends Component {
   constructor(props){
     super(props)
     this.state = {
-      articles: {
-        title: '',
-        created: '',
-        author_fullname: '',
-        url: '',
-        thumbnail: ''
-      }
+      articles: [],
+      sort: ''
     }
   }
 
-  componentDidMount(){
-    this.getHot();
+  //Função que verifica a chamada da categoria a partir do Proxy e
+  //retorna as 10 primeiras postagens
+  getData = async params => {
+    if (params === 'hot') {
+      params = await apiData.getHot({limit: 10})
+    }
+    if (params === 'new') {
+      params = await apiData.getNew({limit: 10})
+    }
+    if (params === 'rising') {
+      params = await apiData.getRising({limit: 10})
+    }
+    return params;
   }
 
-  getData = async () => {
-    const res = await r.getSubreddit('reactjs').getHot()
-    return res;
-  }
-
+  //Funções que são chamadas a partir dos botões clicados e guardam
+  //o estado da categoria em 'sort' para ser usada no botão '+Ver mais'
   getHot = () => {
-    this.getData().then(data => {
-      console.log(data);
+    this.getData('hot').then(data => {
       this.setState({
-        articles: data.submission.title
+        articles: data,
+        sort: 'hot'
       })
     })
   }
 
+  getNews = () => {
+    this.getData('new').then(data => {
+      this.setState({
+        articles: data,
+        sort: 'new'
+      })
+    })
+  }
+
+  getRising = () => {
+    this.getData('rising').then(data => {
+      this.setState({
+        articles: data,
+        sort: 'rising'
+      })
+    })
+  }
+
+  //Função que é chamada a partir do botão "+Ver mais",
+  //compara o estado do último botão clicado e traz mais 15 postagens.
+  //Se params for vazio o método não é invocado
+  viewMoreArticles = () => {
+    const params = this.state.sort
+    if (params !== '') {
+      this.getData(params).then(amountCurrent => {
+        amountCurrent.fetchMore({amount: 15}).then(article => {
+          this.setState({
+            articles: article
+          })
+        })
+      });
+    }
+  }
+
   render() {
     return (
-      <div className="containerBox">
-
+      <ContainerBox>
         <ContainerButtons>
+          {/* Botões fazendo as chamadas dos métodos */}
           <Button onClick={this.getHot}/>
-          <Button>NEWS</Button>
-          <Button>RISING</Button>
+          <Button onClick={this.getNews}>NEWS</Button>
+          <Button onClick={this.getRising}>RISING</Button>
         </ContainerButtons>
 
-      <ContainerList>
+        <ContainerList>
+          {/* Função que mapeia os dados carregados da api e popula a lista */}
+          {this.state.articles.map(article => (
+          <div key={article.id}>
+            {/* Verifica se o thumbnail é vazio se for ele traz o thumbnail padrão
+              senão, traz o thumbnail da api
+            */}
+              <img
+                src={article.thumbnail === 'self'
+                || article.thumbnail === 'default' ? thumbnailImg : article.thumbnail}
+                alt="thumbnail"
+              />
+            <article>
+              <strong>{article.title}</strong>
+              <p>
+                <small>enviado a {moment(article.created).fromNow()} </small>
+                por
+                <span> {article.author.name}</span>
+              </p>
+              <a href={article.url}>link</a>
 
-        <div>
-          <img src="" alt="thumb" width="86px" height="86px"/>
-        </div>
-
-        <div>
-          <ul>
-            <li><h2>{this.state.articles.title}</h2></li>
-            <li><p><small>{this.state.articles.created}</small> por <span>{this.state.articles.author}</span></p></li>
-            <li><a href="#">{this.state.articles.url}</a></li>
-            {/* <li><h2>Título da parada bem grande assim mais ou menos</h2></li>
-            <li><p><small>enviado a 6 horas</small> por <span>usuário_nickname</span></p></li>
-            <li><a href="#">dominio.io</a></li> */}
-          </ul>
-        </div>
-      </ContainerList>
-      </div>
+            </article>
+          </div>
+          ))}
+          {/* Botão que faz a chamada para carregar mais posts */}
+          <Button onClick={this.viewMoreArticles}>+ Ver mais</Button>
+        </ContainerList>
+      </ContainerBox>
     );
   }
 }
