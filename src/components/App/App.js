@@ -1,6 +1,4 @@
 import React from "react";
-
-import Header from "../Header";
 import ArticleList from '../ArticlesList'
 
 //Importando estilo global do app
@@ -10,7 +8,6 @@ function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Header />
       <ArticleList/>
     </div>
   );

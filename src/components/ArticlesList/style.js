@@ -11,12 +11,15 @@ export const ContainerButtons = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+  flex-wrap: wrap;
 `;
 
 /* Configuração da div que traz os dados da api */
 export const ContainerList = styled.div`
   max-width: 800px;
   margin: 20px auto 0;
+  display: flex;
+  flex-direction: column;
 
   div {
     border: 1px solid black;
@@ -24,10 +27,7 @@ export const ContainerList = styled.div`
     border-right: none;
     border-bottom: none;
     padding: 5px 0 10px 0;
-    flex: 1 1 auto;
     width: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
     min-height: 0px;
 
     :hover {
@@ -39,13 +39,18 @@ export const ContainerList = styled.div`
       height: 60px;
       flex: 0 auto;
       float: left;
-      margin: 10px 10px 0 0;
+      margin: 10px 10px 0 5px;
     }
 
     article {
       font-size: 15px;
       line-height: 1.5em;
       margin-left: 1rem;
+      flex-wrap: nowrap;
+
+      @media (max-width: 425px){
+        font-size: 11px !important;
+      }
     }
 
     strong {
@@ -69,8 +74,7 @@ export const ContainerList = styled.div`
       color: #404040;
     }
   }
-
   button {
-    width: 800px;
+    width: auto;
   }
 `;

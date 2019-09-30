@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import Swal from 'sweetalert2'
 import credentialReddit from '../../service/data';
+import Header from "../Header";
 import Button from '../Button';
 
 //Importando os estilos do componente
@@ -90,6 +91,7 @@ export default class ArticleList extends Component {
   render() {
     return (
       <ContainerBox>
+        <Header/>
         <ContainerButtons>
           {/* Botões fazendo as chamadas dos métodos */}
           <Button onClick={this.getHot}/>
