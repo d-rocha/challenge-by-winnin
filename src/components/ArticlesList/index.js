@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import Swal from 'sweetalert2'
 import credentialReddit from '../../service/data';
 import Header from "../Header";
 import Button from '../Button';
@@ -9,6 +8,8 @@ import Button from '../Button';
 import { ContainerBox, ContainerButtons, ContainerList } from './style';
 
 const thumbnailImg = require('../../assets/thumbnail.png');
+
+//const status = false;
 
 //Definindo o Proxy para as chamadas do subreddit reactjs
 const apiData = credentialReddit.getSubreddit('reactjs')
@@ -20,6 +21,10 @@ export default class ArticleList extends Component {
       articles: [],
       sort: ''
     }
+  }
+
+  componentDidMount() {
+    this.getHot();
   }
 
   //Função que verifica a chamada da categoria a partir do Proxy e
@@ -68,7 +73,6 @@ export default class ArticleList extends Component {
 
   //Função que é chamada a partir do botão "+Ver mais",
   //compara o estado do último botão clicado e traz mais 15 postagens.
-  //Se params for vazio o método não é invocado
   viewMoreArticles = () => {
     const params = this.state.sort
     if (params !== '') {
@@ -79,12 +83,6 @@ export default class ArticleList extends Component {
           })
         })
       });
-    } else {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Você deve clicar em um dois botões acima primeiro!'
-      })
     }
   }
 
@@ -93,10 +91,10 @@ export default class ArticleList extends Component {
       <ContainerBox>
         <Header/>
         <ContainerButtons>
-          {/* Botões fazendo as chamadas dos métodos */}
-          <Button onClick={this.getHot}/>
-          <Button onClick={this.getNews}>NEWS</Button>
-          <Button onClick={this.getRising}>RISING</Button>
+            {/* Botões fazendo as chamadas dos métodos */}
+            <Button onClick={this.getHot}/>
+            <Button onClick={this.getNews}>NEWS</Button>
+            <Button onClick={this.getRising}>RISING</Button>
         </ContainerButtons>
 
         <ContainerList>

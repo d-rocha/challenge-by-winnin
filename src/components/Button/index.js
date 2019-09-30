@@ -4,9 +4,7 @@ import React, {
 import PropTypes from 'prop-types'
 
 //Importando os estilos do componente
-import {
-  ButtonStyled
-} from './style'
+import { ButtonStyled } from './style'
 
 export default class Button extends Component {
 
