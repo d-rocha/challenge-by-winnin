@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import Swal from 'sweetalert2'
 import credentialReddit from '../../service/data';
 import Button from '../Button';
 
@@ -77,6 +78,12 @@ export default class ArticleList extends Component {
           })
         })
       });
+    } else {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Você deve clicar em um dois botões acima primeiro!'
+      })
     }
   }
 
