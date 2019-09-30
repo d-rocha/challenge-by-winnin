@@ -6,8 +6,6 @@ A prova consiste em ler dados da api do [reddit](https://www.reddit.com/dev/api/
 
 Seu projeto DEVE ser feito usando a biblioteca React.
 
-Além disso, não esqueça de incluir instruções sobre como executar o seu projeto.
-
 ## Tecnologias Utilizadas
 
 - HTML5
