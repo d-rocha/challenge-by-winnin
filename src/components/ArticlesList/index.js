@@ -112,7 +112,7 @@ export default class ArticleList extends Component {
             <article>
               <strong>{article.title}</strong>
               <p>
-                <small>enviado a {moment(article.created).fromNow()} </small>
+                <small>enviado {moment.unix(article.created).fromNow()} </small>
                 por
                 <span> {article.author.name}</span>
               </p>
