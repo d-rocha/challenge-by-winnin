@@ -16,12 +16,14 @@ export default class Button extends Component {
   //Definindo propriedades obrigatórias com propTypes
   static propTypes = {
     children: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    style: PropTypes.string
   }
 
   render() {
+
     return (
-      <ButtonStyled onClick={this.props.onClick}>
+      <ButtonStyled onClick={this.props.onClick} style={this.props.style}>
         {this.props.children}
       </ButtonStyled>
     );

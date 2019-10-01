@@ -48,7 +48,11 @@ export const ContainerList = styled.div`
       margin-left: 1rem;
       flex-wrap: nowrap;
 
-      @media (max-width: 425px){
+      @media (max-width: 320px){
+        font-size: 10px !important;
+      }
+
+      @media (max-width: 600px){
         font-size: 11px !important;
       }
     }

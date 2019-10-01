@@ -9,8 +9,6 @@ import { ContainerBox, ContainerButtons, ContainerList } from './style';
 
 const thumbnailImg = require('../../assets/thumbnail.png');
 
-//const status = false;
-
 //Definindo o Proxy para as chamadas do subreddit reactjs
 const apiData = credentialReddit.getSubreddit('reactjs')
 
