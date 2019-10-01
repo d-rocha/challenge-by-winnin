@@ -16,6 +16,19 @@ Seu projeto DEVE ser feito usando a biblioteca React.
 - [Moment.js](https://momentjs.com/)
 - [Prop-types](https://www.npmjs.com/package/prop-types)
 
+# Para acessar o projeto:
+
+[CLIQUE AQUI](https://challenge-by-winnin.netlify.com/)
+
+ou
+
+Copie o link abaixo e cole no navegador.
+
+```
+https://challenge-by-winnin.netlify.com/
+
+```
+
 ## Execução do Projeto
 
 ### YARN / NPM
