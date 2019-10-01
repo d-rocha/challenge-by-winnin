@@ -9,7 +9,6 @@ Seu projeto DEVE ser feito usando a biblioteca React.
 ## Tecnologias Utilizadas
 
 - HTML5
-- CSS3
 - Javascript (ES6)
 - [ReactJS](https://reactjs.org/)
 - [Styled-components](https://www.styled-components.com/)
