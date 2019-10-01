@@ -9,6 +9,9 @@ import { ContainerBox, ContainerButtons, ContainerList } from './style';
 
 const thumbnailImg = require('../../assets/thumbnail.png');
 
+const status = { active: '#ff5500', inactive: '#666666' }
+const colors = { hot: '', news: '', rising: '' }
+
 //Definindo o Proxy para as chamadas do subreddit reactjs
 const apiData = credentialReddit.getSubreddit('reactjs')
 
@@ -28,21 +31,28 @@ export default class ArticleList extends Component {
   //Função que verifica a chamada da categoria a partir do Proxy e
   //retorna as 10 primeiras postagens
   getData = async params => {
-    if (params === 'hot') {
-      params = await apiData.getHot({limit: 10})
+    try{
+      if (params === 'hot') {
+        params = await apiData.getHot({limit: 10})
+      }
+      if (params === 'new') {
+        params = await apiData.getNew({limit: 10})
+      }
+      if (params === 'rising') {
+        params = await apiData.getRising({limit: 10})
+      }
+      return params;
+    }catch (err){
+      console.log(err)
     }
-    if (params === 'new') {
-      params = await apiData.getNew({limit: 10})
-    }
-    if (params === 'rising') {
-      params = await apiData.getRising({limit: 10})
-    }
-    return params;
   }
 
   //Funções que são chamadas a partir dos botões clicados e guardam
   //o estado da categoria em 'sort' para ser usada no botão '+Ver mais'
   getHot = () => {
+    colors.hot = status.active
+    colors.news = status.inactive
+    colors.rising = status.inactive
     this.getData('hot').then(data => {
       this.setState({
         articles: data,
@@ -52,6 +62,9 @@ export default class ArticleList extends Component {
   }
 
   getNews = () => {
+    colors.hot = status.inactive
+    colors.news = status.active
+    colors.rising = status.inactive
     this.getData('new').then(data => {
       this.setState({
         articles: data,
@@ -61,6 +74,9 @@ export default class ArticleList extends Component {
   }
 
   getRising = () => {
+    colors.hot = status.inactive
+    colors.news = status.inactive
+    colors.rising = status.active
     this.getData('rising').then(data => {
       this.setState({
         articles: data,
@@ -90,9 +106,9 @@ export default class ArticleList extends Component {
         <Header/>
         <ContainerButtons>
             {/* Botões fazendo as chamadas dos métodos */}
-            <Button onClick={this.getHot}/>
-            <Button onClick={this.getNews}>NEWS</Button>
-            <Button onClick={this.getRising}>RISING</Button>
+            <Button onClick={this.getHot} style={{ backgroundColor: colors.hot}}/>
+            <Button onClick={this.getNews} style={{ backgroundColor: colors.news }}>NEWS</Button>
+            <Button onClick={this.getRising} style={{ backgroundColor: colors.rising }}>RISING</Button>
         </ContainerButtons>
 
         <ContainerList>
